@@ -1,0 +1,842 @@
+/* Basic Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+/* 1. Remove the 'px' from weight—it must be a number only */
+.outfit-font {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400; 
+  font-style: normal;
+}
+
+/* 2. Tell your project titles to use the Google Font */
+h3 {
+    font-family: "Outfit", sans-serif !important;
+}
+nav {
+    font-family: "Outfit", sans-serif !important;
+}
+/* 3. If you want to use @font-face for a local font later, do it like this: */
+@font-face {
+    font-family: 'MyCustomFont'; 
+    src: url('fonts/myfont.woff2') format('woff2');
+    font-weight: normal;
+}
+.outfit-font {
+    font-family: 'MyCustomFont', sans-serif;
+}
+.outfit-font {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 100px;
+  font-style: normal;
+}
+/* Header & Nav */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+/* Styling the Name Overlay */
+.overlay h1 {
+    font-family: 'Bebas Neue', sans-serif; /* A bold, clean font works best for this */
+    font-size: clamp(3rem, 10vw, 8rem);   /* This makes it HUGE but scales for mobile */
+    font-weight: 950;
+    
+    /* Translucency */
+    color: rgba(0, 0, 0, .9);      /* White at 40% opacity */
+    
+    /* Effects */
+    text-transform: uppercase;
+    letter-spacing: -2px;                 /* Tighter kerning for a modern look */
+    line-height: 0.9;
+    pointer-events: none;                 /* Allows clicks to go 'through' the text to the image */
+
+}
+
+/* Ensure the overlay container allows the text to sit correctly */
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;      /* Centers name vertically in the 'Big' box */
+    justify-content: center;   /* Centers name horizontally */
+    padding: 20px;
+}
+/* Hero Section with Background Image *//* 1. Ensure the parent containers allow full height */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* 2. The main area: Takes up all available space below the header */
+.resume-main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    min-height: calc(100vh - 80px); /* Subtracts header height */
+}
+
+/* 3. The PDF Container: Defines the "Box" the PDF sits in */
+.pdf-container {
+    width: 100%;
+    max-width: 1000px; /* Standard Portfolio width */
+    height: 1100px;    /* Force a tall, physical height */
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* 4. The Object: Tells the PDF to fill that box 100% */
+.pdf-container object {
+    width: 100%;
+    height: 100% !important;
+    display: block;
+}
+.hero {
+    position: relative;
+    height: 80vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    text-align: left;
+    color: white;
+    /* Replace 'hero-bg.jpg' with your actual image path */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                url('hero-bg.jpg') no-repeat center center/cover;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.hero-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* Lower this number if the gap is too big, or use 'auto' */
+    grid-auto-rows: minmax(200px, auto); 
+    gap: 12px;
+    padding: 20px;
+    /* This fills holes automatically */
+    grid-auto-flow: dense; 
+}
+
+.grid-item.tall {
+    /* This tells the item to take up two vertical slots, closing the gap */
+    grid-row: span 2; 
+}
+
+.grid-item.big {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+.grid-item {
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* --- THE IMPERFECT LOGIC --- */
+
+/* Big square: 2x2 blocks */
+.grid-item.big {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+/* Tall block: 1 wide, 2 high */
+.grid-item.tall {
+    grid-row: span 2;
+}
+
+/* Wide block: 2 wide, 1 high */
+.grid-item.wide {
+    grid-column: span 2;
+}
+
+/* CSS3 Effect: Lift and Shadow */
+.grid-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    z-index: 10;
+}
+/* This handles the 'click to expand' effect */
+.grid-item.expanded {
+    position: fixed;
+    top: 5%;
+    left: 5%;
+    width: 90vw;
+    height: 90vh;
+    z-index: 10000;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: rgba(0,0,0,0.9);
+    border-radius: 0;
+    cursor: zoom-out;
+}
+
+/* Ensure the overlay text doesn't block the click on the big item */
+.overlay {
+    pointer-events: none; 
+}
+/* Hides the name when the image is enlarged */
+.grid-item.expanded .overlay {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsively adds columns */
+    grid-auto-rows: 250px;
+    grid-auto-flow: dense; /* Fills gaps automatically */
+    gap: 15px;
+    padding: 20px;
+}
+
+/* Maintain your existing spans for variety */
+.grid-item.tall { grid-row: span 2; }
+.grid-item.wide { grid-column: span 2; }
+.grid-item.big { grid-column: span 2; grid-row: span 2; }
+
+/* Keep your expansion logic from the home page */
+.grid-item.expanded {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: 10000;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: rgba(0,0,0,0.95);
+    cursor: zoom-out;
+}
+/* Container for the Portfolio Page */
+.portfolio-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 80px; /* Space between projects */
+}
+
+/* The Cohesive Row Logic */
+.portfolio-item {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr; /* Image takes 60%, Text takes 40% */
+    gap: 40px;
+    align-items: center;
+}
+
+/* Image styling - matches your homepage "feel" */
+.project-image {
+    height: 450px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    cursor: zoom-in;
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.project-image:hover {
+    transform: scale(1.02);
+}
+
+/* Text styling */
+.project-info h3 {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.project-info p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Mobile: Stack them so they don't get squished */
+@media (max-width: 850px) {
+    .portfolio-item {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .project-image {
+        height: 300px;
+    }
+}
+/* The 2x2 Container */
+.portfolio-2x2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Exactly 2 per row */
+    gap: 40px;
+    padding: 40px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* The Card holding Image + Text */
+.project-card {
+    display: flex;
+    flex-direction: column; /* Text stays under the image */
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+/* Image Sizing - This stops them from being "huge" */
+.project-image {
+    width: 100%;
+    height: 300px; /* Controlled height for the 2x2 look */
+    background-size: cover;
+    background-position: center;
+    cursor: zoom-in;
+}
+
+/* Text Styling inside the card */
+.project-info {
+    padding: 20px;
+}
+
+.project-info h3 {
+    font-family: inherit; /* Uses your Helvetica/Arial */
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.project-info p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* Expansion logic remains the same */
+.project-image.expanded {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: 100000;
+    background-color: rgba(0,0,0,0.95);
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: zoom-out;
+    border-radius: 0;
+}
+/* The 4-Column Container */
+.portfolio-tall-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 25px;
+    padding: 40px 2%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* The Card */
+.project-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+/* TALL IMAGE LOGIC */
+.project-image {
+    width: 100%;
+    height: 450px; /* This makes it taller than it is wide */
+    background-size: cover;
+    background-position: center;
+    cursor: zoom-in;
+}
+
+/* Text Styling */
+.project-info {
+    padding: 15px;
+}
+
+.project-info h3 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.project-info p {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.3;
+}
+
+/* Expansion logic (same as homepage) */
+.project-image.expanded {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: 100000;
+    background-color: rgba(0,0,0,0.95);
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: zoom-out;
+    border-radius: 0;
+}
+.resume-main {
+    flex: 1;
+    padding: 10px; /* Reduced padding to let the image grow */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Aligns to top so you don't have a gap at the top */
+    background-color: #f9f9f9;
+    overflow-y: auto; /* Allows scrolling if the resume is long */
+}
+
+.resume-display {
+    width: 100%;
+    /* Increased max-width so it can actually fill the screen */
+    max-width: 1200px; 
+    
+    /* This height calc forces it to be as tall as possible */
+    height: 150vh; 
+    
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-position: top center; /* Keeps it locked to the top */
+    
+    border-radius: 10px;
+    background-color: #fff;
+    /* Removed the shadow/border if you want it to look "cleaner" and larger */
+}
+/* 1. RESET & BASE STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+/* 2. HEADER & NAV */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo { font-weight: bold; font-size: 1.5rem; letter-spacing: 2px; }
+nav ul { display: flex; list-style: none; gap: 25px; }
+nav a { text-decoration: none; color: #333; font-weight: 500; }
+nav a.active { border-bottom: 2px solid #333; }
+
+/* 3. PROJECTS PAGE LAYOUT */
+.projects-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.project-feature-group {
+    margin-bottom: 100px; /* Space between different project sections */
+}
+
+.group-title {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+}
+
+/* Big Image Section */
+.feature-main {
+    margin-bottom: 30px;
+}
+
+.big-feature {
+    width: 100%;
+    height: 500px; /* Force it big */
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    cursor: zoom-in;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Two Small Images Row */
+.feature-sub {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.small-feature {
+    width: 100%;
+    height: 350px; /* Smaller than main but still clear */
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    cursor: zoom-in;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Text Boxes (No more overlaps) */
+.text-box {
+    padding: 20px 0;
+}
+
+.text-box h3 {
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.text-box p {
+    font-size: 0.95rem;
+    color: #666;
+    max-width: 800px;
+}
+
+/* 4. SHARED GRID ITEMS (For Home/Portfolio) */
+.grid-item {
+    transition: transform 0.3s ease;
+}
+
+.grid-item:hover {
+    transform: translateY(-5px);
+}
+
+/* 5. EXPANSION LOGIC (Click to Zoom) */
+.grid-item.expanded {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: 9999;
+    background-color: rgba(0,0,0,0.95);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: zoom-out;
+    border-radius: 0;
+}
+.view-link, .project-card-link {
+    text-decoration: none; /* Removes the underline */
+    color: inherit;       /* Makes the text match the rest of the page (not purple) */
+    display: block;       /* Ensures the entire card area stays clickable */
+}
+/* 1. THE GRID: Standard 2-column layout */
+.portfolio-2x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 30px;
+    padding: 40px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* 2. THE CARD: Forces Image and Text to stack vertically */
+.project-card {
+    display: block !important; /* Forces vertical stacking */
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative; /* Keeps everything contained */
+}
+
+/* 3. THE IMAGE: Defines the space so it isn't flat or overlapping */
+.project-image {
+    width: 100%;
+    height: 400px; /* Adjust this number to make images taller/shorter */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: block !important;
+    position: relative; /* Ensures it stays in its own 'box' */
+    z-index: 1;
+}
+
+/* 4. THE INFO: Forces the text box to sit BELOW the image */
+.project-info {
+    display: block !important;
+    padding: 20px;
+    background: #ffffff;
+    position: relative;
+    z-index: 2; /* Ensures it sits on top of any background bleed */
+    border-top: 1px solid #eee; /* Visual separator */
+}
+
+/* 5. TEXT STYLING: Clear and readable */
+.project-info h3 {
+    margin-bottom: 10px;
+    color: #333;
+    text-transform: uppercase;
+}
+
+.project-info p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+/* --- BASIC LAYOUT --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, sans-serif; background: #f9f9f9; }
+
+.main-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 5%; background: #fff; border-bottom: 1px solid #ddd;
+    position: sticky; top: 0; z-index: 100;
+}
+
+.portfolio-2x2 {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 30px; padding: 40px 5%;
+}
+
+/* --- THE CARD FIX --- */
+.project-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    overflow: visible !important; /* ALLOWS THE IMAGE TO BREAK OUT */
+    position: relative;
+}
+
+.project-image {
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    cursor: zoom-in;
+    transition: transform 0.2s ease;
+}
+
+.project-info { padding: 20px; border-top: 1px solid #eee; }
+
+/* --- THE EXPANDED FIX (This is what you saw in your screenshot) --- */
+.project-image.expanded {
+    position: fixed !important; /* BREAKS OUT OF THE CARD */
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 99999 !important; /* SITS ON TOP OF EVERYTHING */
+    background-color: rgba(0,0,0,0.95);
+    background-size: contain; /* SHOWS FULL IMAGE WITHOUT CROP */
+    background-repeat: no-repeat;
+    cursor: zoom-out;
+}
+/* 1. Reset the Grid/Card so they don't trap the image */
+.portfolio-2x2, .portfolio-tall-4, .project-card {
+    /* This ensures the grid doesn't try to calculate space for the expanded image */
+    transform: none !important;
+    perspective: none !important;
+    contain: none !important;
+}
+
+/* 2. The Expanded State: True Fullscreen Overlay */
+.project-image.expanded {
+    position: fixed !important;   /* This is the key: it floats above the page */
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;     /* Full screen width */
+    height: 100vh !important;    /* Full screen height */
+    z-index: 999999 !important;  /* Stays above nav and other cards */
+    
+    background-color: rgba(0, 0, 0, 0.95) !important;
+    background-size: contain !important; /* Shows the full image without cropping */
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    
+    /* Remove any styling from the small version */
+    margin: 0 !important;
+    border-radius: 0 !important;
+    cursor: zoom-out !important;
+}
+
+/* 3. Prevent the page from scrolling while a photo is open */
+body:has(.expanded) {
+    overflow: hidden;
+}
+/* MOBILE */
+@media (max-width: 768px) {
+    .portfolio-2x2 { grid-template-columns: 1fr; }
+    .project-image { height: 300px; }
+}
+/* --- MOBILE FIX --- */
+@media (max-width: 800px) {
+    .portfolio-2x2 {
+        grid-template-columns: 1fr; /* One column on small screens */
+    }
+}
+/* 6. MOBILE RESPONSIVENESS */
+@media (max-width: 850px) {
+    .feature-sub {
+        grid-template-columns: 1fr; /* Stack the small images on phones */
+    }
+    
+    .big-feature {
+        height: 300px;
+    }
+    
+    .small-feature {
+        height: 250px;
+    }
+}
+/* Responsive: switch to 2 columns on tablets, 1 on mobile */
+@media (max-width: 1100px) {
+    .portfolio-tall-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .portfolio-tall-4 { grid-template-columns: 1fr; }
+}
+/* Mobile: Switch to 1 column so it's not squished */
+@media (max-width: 768px) {
+    .portfolio-2x2 {
+        grid-template-columns: 1fr;
+    }
+}
+/* Mobile: Stack them into 1 or 2 columns so they don't get too tiny */
+@media (max-width: 768px) {
+    .hero-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .grid-item.big, .grid-item.wide, .grid-item.tall {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+}
+/* Projects Grid */
+.container {
+    padding: 60px 5%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background: #fff;
+    padding: 15px;
+    border: 1px solid #eee;
+}
+
+.img-placeholder {
+    width: 100%;
+    height: 250px;
+    background: #ddd;
+    margin-bottom: 15px;
+}
+.project-img {
+    width: 100%;
+    height: 250px;
+    object-fit: contain; /* Shows full image, no cropping */
+    background-color: #fff; /* Adds a clean white background behind the image */
+    display: block;
+}
+.role {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+.project-card {
+    background: #fff;
+    padding: 15px;
+    border: 1px solid #eee;
+    transition: all 0.3s ease; /* Required for smooth animation */
+    cursor: pointer;
+}
+
+.project-card:hover {
+    transform: translateY(-10px); /* Lifts the card */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Adds depth */
+    border-color: #333;
+}

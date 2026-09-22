@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Berry | Portfolio</title>
+    
+    <link rel="stylesheet" href="styleself.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">JB</div>
+        <nav>
+            <ul>
+                <li><a href="self.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="resume.html">Resume</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-grid">
+        <div class="grid-item big" style="background-image: url('images/trout.jpg');" onclick="this.classList.toggle('expanded')">
+            <div class="overlay"><h1>John Berry</h1></div>
+        </div>
+        <div class="grid-item" style="background-image: url('images/ink.jpeg');" onclick="this.classList.toggle('expanded')"></div>
+        <div class="grid-item tall" style="background-image: url('images/award.jpg');" onclick="this.classList.toggle('expanded')"></div>
+        <div class="grid-item wide" style="background-image: url('images/wave-printed.jpeg');" onclick="this.classList.toggle('expanded')"></div>
+        <div class="grid-item tall" style="background-image: url('images/press.jpg');" onclick="this.classList.toggle('expanded')"></div>
+        <div class="grid-item" style="background-image: url('images/stickers.jpeg');" onclick="this.classList.toggle('expanded')"></div>
+    </section>
+    
+    <section id="work" class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="project-grid">
+            
+            <a href="projects.html" class="project-card-link">
+                <div class="project-card">
+                    <img src="images/Green-acres-logo-concept-4-JB-.jpg" alt="Green Acres Logo" class="project-img">
+                    <div class="project-info">
+                        <h3 class="font">Green Acres Logo</h3>
+                        <p class="role">Designed for a construction and farming company</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="projects.html#archdale" id="archdale" class="project-card-link">
+                <div class="project-card">
+                    <img src="images/archdale-two-poster-mockup.jpg" alt="Archdale flyers" class="project-img">
+                    <div class="project-info">
+                        <h3>Archdale Flyer</h3>
+                        <p class="role">Designed to promote a new arts business</p>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </section>
+</body>
+</html>
